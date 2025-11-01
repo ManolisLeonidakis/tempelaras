@@ -1,0 +1,304 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations and styles for the home page */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Hero section animations */
+.hero-content {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-stats {
+    animation: fadeInUp 1.2s ease-out 0.3s both;
+}
+
+/* Service cards hover effects */
+.service-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Step animations */
+.step-card {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.step-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.step-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+.step-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+/* Benefit cards */
+.benefit-card {
+    animation: fadeInUp 0.8s ease-out both;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Testimonial cards */
+.testimonial-card {
+    animation: fadeInUp 0.8s ease-out both;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Worker cards animations */
+.worker-card {
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.worker-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.worker-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.worker-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+.worker-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+.worker-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+.worker-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* Profile page specific styles */
+.profile-header {
+    animation: fadeInUp 1s ease-out;
+}
+
+.profile-stats {
+    animation: fadeInUp 1.2s ease-out 0.2s both;
+}
+
+.profile-content {
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.profile-sidebar {
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+/* Project cards hover effect */
+.project-card {
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Review cards animation */
+.review-card {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.review-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.review-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.review-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Similar workers animation */
+.similar-worker {
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.similar-worker:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.similar-worker:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* Quick info card sticky positioning */
+.quick-info-card {
+    position: sticky;
+    top: 2rem;
+}
+
+/* Rating stars hover effect */
+.rating-stars {
+    transition: transform 0.2s ease;
+}
+
+.rating-stars:hover {
+    transform: scale(1.05);
+}
+
+/* Contact buttons enhanced effects */
+.profile-contact-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.profile-contact-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.6s;
+}
+
+.profile-contact-btn:hover::before {
+    left: 100%;
+}
+
+/* Skills badges */
+.skill-badge {
+    animation: fadeInUp 0.5s ease-out both;
+    transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Loading states */
+.loading {
+    animation: pulse 2s infinite;
+}
+
+.worker-card-loading {
+    animation: pulse 2s infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Custom scrollbar for better aesthetics */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Rating stars animation */
+@keyframes starPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.rating-star:hover {
+    animation: starPulse 0.3s ease-in-out;
+}
+
+/* Badge animations */
+.badge {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-number {
+    animation: countUp 0.8s ease-out both;
+}
