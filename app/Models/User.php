@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Ability;
-use App\Models\Image;
-use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;

@@ -21,7 +21,7 @@ class PostFactory extends Factory
             'user_id' => \App\Models\User::factory(),
             'description' => $this->faker->sentence(10),
             'body' => $this->faker->paragraph(10),
-            'image' => 'https://picsum.photos/id/' . $this->faker->numberBetween(1, 50) . '/800/400',
+            'image' => 'https://picsum.photos/id/'.$this->faker->numberBetween(1, 50).'/800/400',
             'slug' => $this->faker->slug(),
         ];
     }

@@ -62,7 +62,7 @@
                             </svg>
                             <span class="text-lg">
                                 {{ $user->user_address['street'] ?? '' }},
-                                {{ $user->user_address['city'] ?? '' }},
+                                {{ $user->city ?? '' }},
                                 {{ $user->user_address['postal_code'] ?? '' }}
                             </span>
                         </div>
@@ -165,7 +165,7 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             @foreach($user->projects as $project)
-                                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-md transition-shadow duration-200 project-card">
+                                <a href="{{ route('projects.show', $project) }}" class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-md hover:border-green-500 transition-all duration-200 project-card block">
                                     <div class="flex items-start space-x-4">
                                         @if($project->images && $project->images->count() > 0)
                                             <div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
@@ -188,15 +188,18 @@
                                             @if($project->description)
                                                 <p class="text-gray-600 text-sm line-clamp-3">{{ Str::limit($project->description, 120) }}</p>
                                             @endif
-                                            <div class="mt-3 flex items-center text-sm text-gray-500">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                                </svg>
-                                                Ολοκληρώθηκε {{ $project->created_at->format('M Y') }}
+                                            <div class="mt-3 flex items-center justify-between">
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                    </svg>
+                                                    {{ $project->created_at->format('M Y') }}
+                                                </div>
+                                                <span class="text-green-600 text-sm font-medium">Δείτε περισσότερα →</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             @endforeach
                         </div>
                     </div>

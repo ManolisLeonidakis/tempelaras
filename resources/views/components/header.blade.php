@@ -17,13 +17,13 @@
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-8">
-                <a href="{{ route('home') }}"
-                   class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 {{ request()->routeIs('home') ? 'text-blue-600 border-b-2 border-blue-600' : '' }}">
-                    Αρχική
-                </a>
                 <a href="{{ route('find') }}"
                    class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 {{ request()->routeIs('find') ? 'text-blue-600 border-b-2 border-blue-600' : '' }}">
                     Βρείτε Επαγγελματία
+                </a>
+                <a href="{{ route('projects.index') }}"
+                   class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 {{ request()->routeIs('projects.*') ? 'text-blue-600 border-b-2 border-blue-600' : '' }}">
+                    Projects
                 </a>
                 <a href="{{ route('posts.index') }}"
                    class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 {{ request()->routeIs('posts.*') ? 'text-blue-600 border-b-2 border-blue-600' : '' }}">
@@ -112,13 +112,13 @@
              x-transition:leave-end="transform opacity-0 scale-95">
 
             <nav class="flex flex-col space-y-2">
-                <a href="{{ route('home') }}"
-                   class="text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium rounded-md hover:bg-gray-50 transition-colors duration-200 {{ request()->routeIs('home') ? 'text-blue-600 bg-blue-50' : '' }}">
-                    Αρχική
-                </a>
                 <a href="{{ route('find') }}"
                    class="text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium rounded-md hover:bg-gray-50 transition-colors duration-200 {{ request()->routeIs('find') ? 'text-blue-600 bg-blue-50' : '' }}">
                     Βρείτε Επαγγελματία
+                </a>
+                <a href="{{ route('projects.index') }}"
+                   class="text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium rounded-md hover:bg-gray-50 transition-colors duration-200 {{ request()->routeIs('find') ? 'text-blue-600 bg-blue-50' : '' }}">
+                    Projects
                 </a>
                 <a href="{{ route('posts.index') }}"
                    class="text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium rounded-md hover:bg-gray-50 transition-colors duration-200 {{ request()->routeIs('posts.*') ? 'text-blue-600 bg-blue-50' : '' }}">
