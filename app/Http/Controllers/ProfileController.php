@@ -30,7 +30,7 @@ class ProfileController extends Controller
         $validated = $request->validated();
 
         // Handle image upload.
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('profile_image')) {
             // Delete old image if exists.
             if ($user->image) {
                 \Storage::delete('public/' . $user->image->url);
@@ -38,7 +38,7 @@ class ProfileController extends Controller
             }
 
             // Store new image.
-            $imagePath = $request->file('image')->store('profile-images', 'public');
+            $imagePath = $request->file('profile_image')->store('images', 'public');
 
             // Create new image record.
             $user->image()->create([
@@ -55,7 +55,7 @@ class ProfileController extends Controller
         }
 
         // Remove image from validated data as it's handled separately.
-        unset($validated['image']);
+        unset($validated['profile_image']);
 
         $user->fill($validated);
 

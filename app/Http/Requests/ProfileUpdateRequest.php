@@ -29,10 +29,11 @@ class ProfileUpdateRequest extends FormRequest
             'idikotita' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:20', 'regex:/^[\+]?[0-9\-\s\(\)]+$/'],
             'mobile' => ['nullable', 'string', 'max:20', 'regex:/^[\+]?[0-9\-\s\(\)]+$/'],
+            'city' => ['required', 'string', 'max:255'],
             'user_address.street' => ['nullable', 'string', 'max:255'],
-            'user_address.city' => ['nullable', 'string', 'max:255'],
+            'user_address.area' => ['nullable', 'string', 'max:255'],
             'user_address.postal_code' => ['nullable', 'string', 'max:10'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'profile_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
         ];
     }
 }

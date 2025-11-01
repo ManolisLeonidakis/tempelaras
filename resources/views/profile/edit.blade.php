@@ -38,8 +38,8 @@
                 <div class="p-6">
                     <div class="flex items-center space-x-6">
                         <div class="relative">
-                            @if($user->images->where('type', 'profile')->first())
-                                <img src="{{ Storage::url($user->images->where('type', 'profile')->first()->path) }}"
+                            @if($user->images)
+                                <img src="{{ asset('storage/' . $user->image->url) }}"
                                      alt="Profile Picture"
                                      class="w-24 h-24 rounded-full object-cover border-4 border-gray-200">
                             @else
@@ -96,15 +96,15 @@
                     </div>
 
                     <div>
-                        <label for="specialty" class="block text-sm font-medium text-gray-700 mb-2">Ειδικότητα *</label>
-                        <select id="specialty" name="specialty"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('specialty') border-red-500 @enderror">
+                        <label for="idikotita" class="block text-sm font-medium text-gray-700 mb-2">Ειδικότητα *</label>
+                        <select id="idikotita" name="idikotita"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('idikotita') border-red-500 @enderror">
                             <option value="">Επιλέξτε ειδικότητα</option>
                             @foreach (config('services.idikothtes') as $idikotita)
-                                <option value="{{ $idikotita }}" {{ old('specialty', $user->specialty) == $idikotita ? 'selected' : '' }}>{{ $idikotita }}</option>
+                                <option value="{{ $idikotita }}" {{ old('idikotita', $user->idikotita) == $idikotita ? 'selected' : '' }}>{{ $idikotita }}</option>
                             @endforeach
                         </select>
-                        @error('specialty')
+                        @error('idikotita')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
@@ -171,14 +171,14 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label for="city" class="block text-sm font-medium text-gray-700 mb-2">Πόλη</label>
-                            <select id="city" name="user_address[city]"
+                            <select id="city" name="city"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('user_address.city') border-red-500 @enderror">
                                 <option value="">Επιλέξτε πόλη</option>
                                 @foreach (config('services.cities') as $city)
-                                    <option value="{{ $city }}" {{ old('user_address.city', $user->user_address['city'] ?? '') == $city ? 'selected' : '' }}>{{ $city }}</option>
+                                    <option value="{{ $city }}" {{ old('city', $user->city ?? '') == $city ? 'selected' : '' }}>{{ $city }}</option>
                                 @endforeach
                             </select>
-                            @error('user_address.city')
+                            @error('city')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
