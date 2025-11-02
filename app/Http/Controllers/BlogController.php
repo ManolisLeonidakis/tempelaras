@@ -11,7 +11,7 @@ class BlogController extends Controller
     {
         $posts = Post::when($user, function ($query) use ($user) {
             return $query->where('user_id', $user->id);
-        })->paginate(9);
+        })->paginate(10);
 
         return view('posts.index', compact('posts'));
     }
