@@ -28,7 +28,7 @@ class ProfileUpdateRequest extends FormRequest
             'description' => ['nullable', 'string', 'max:1000'],
             'idikotita' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:20', 'regex:/^[\+]?[0-9\-\s\(\)]+$/'],
-            'mobile' => ['nullable', 'string', 'max:20', 'regex:/^[\+]?[0-9\-\s\(\)]+$/'],
+            'mobile' => ['nullable', 'string', 'max:10', 'regex:/^[\+]?[0-9\-\s\(\)]+$/'],
             'city' => ['required', 'string', 'max:255'],
             'user_address.street' => ['nullable', 'string', 'max:255'],
             'user_address.area' => ['nullable', 'string', 'max:255'],
