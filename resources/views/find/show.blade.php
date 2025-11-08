@@ -153,6 +153,48 @@
                     @endif
                 </div>
 
+                <!-- Services Section -->
+                @if($user->services && $user->services->count() > 0)
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <svg class="w-6 h-6 mr-3 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                            Υπηρεσίες & Τιμές
+                        </h2>
+
+                        <div class="space-y-3">
+                            @foreach($user->services as $service)
+                                <div class="bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200 p-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex-1">
+                                            <div class="flex items-center space-x-4">
+                                                <div class="flex-1">
+                                                    <h3 class="text-base font-semibold text-gray-900">{{ $service->name }}</h3>
+                                                    @if($service->description)
+                                                        <p class="text-gray-600 text-sm mt-1">{{ Str::limit($service->description, 100) }}</p>
+                                                    @endif
+                                                </div>
+                                                <div class="bg-emerald-50 rounded-lg px-3 py-2 border border-emerald-200">
+                                                    <div class="text-sm font-semibold text-emerald-700">{{ $service->formatted_rate }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ml-4">
+                                            <button class="inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors duration-200 transform hover:scale-105 text-sm">
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                                </svg>
+                                                Επικοινωνία
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
                 <!-- Projects Section -->
                 @if($user->projects && $user->projects->count() > 0)
                     <div class="bg-white rounded-2xl shadow-lg p-8">
@@ -297,20 +339,14 @@
                         </div>
 
                         <div class="flex items-center justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Τιμή/Ώρα</span>
-                            <span class="font-medium text-gray-900">€50-80</span>
-                        </div>
-
-                        <div class="flex items-center justify-between py-2 border-b border-gray-100">
-                            <span class="text-gray-600">Διαθεσιμότητα</span>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                Διαθέσιμος
+                            <span class="text-gray-600">Υπηρεσίες</span>
+                            <span class="font-medium text-gray-900">
+                                @if($user->services && $user->services->count() > 0)
+                                    {{ $user->services->count() }} υπηρεσι{{ $user->services->count() === 1 ? 'α' : 'ες' }}
+                                @else
+                                    Δεν έχουν οριστεί
+                                @endif
                             </span>
-                        </div>
-
-                        <div class="flex items-center justify-between py-2">
-                            <span class="text-gray-600">Εγγύηση</span>
-                            <span class="font-medium text-gray-900">6 μήνες</span>
                         </div>
                     </div>
 
