@@ -1,5 +1,5 @@
 <header class="bg-white shadow-lg sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ mobileMenu: false }">
         <div class="flex justify-between items-center py-4">
             <!-- Logo -->
             <div class="flex-shrink-0">
@@ -9,9 +9,6 @@
                         alt="Vres Mastora Logo"
                         class="h-12 w-auto"
                     />
-                    <span class="ml-3 text-2xl font-bold text-gray-900 hidden sm:block">
-                        Vres Mastora
-                    </span>
                 </a>
             </div>
 
@@ -33,6 +30,19 @@
 
             <!-- User Menu -->
             <div class="flex items-center space-x-4">
+                <!-- Wishlist Icon -->
+                <a href="{{ route('wishlist.index') }}"
+                   class="relative text-gray-700 hover:text-red-600 transition-colors duration-200 p-2 rounded-full hover:bg-gray-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span x-data="{ count: {{ count(session('wishlist', [])) }} }"
+                          x-show="count > 0"
+                          x-text="count"
+                          class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                    </span>
+                </a>
+
                 @auth
                     <!-- Profile Dropdown -->
                     <div class="relative" x-data="{ open: false }">
@@ -123,6 +133,15 @@
                 <a href="{{ route('posts.index') }}"
                    class="text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium rounded-md hover:bg-gray-50 transition-colors duration-200 {{ request()->routeIs('posts.*') ? 'text-blue-600 bg-blue-50' : '' }}">
                     Blog
+                </a>
+                <a href="{{ route('wishlist.index') }}"
+                   class="text-gray-700 hover:text-red-600 px-3 py-2 text-base font-medium rounded-md hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between {{ request()->routeIs('wishlist.*') ? 'text-red-600 bg-red-50' : '' }}">
+                    <span>Αγαπημένα</span>
+                    @if(count(session('wishlist', [])) > 0)
+                        <span class="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                            {{ count(session('wishlist', [])) }}
+                        </span>
+                    @endif
                 </a>
 
                 @auth

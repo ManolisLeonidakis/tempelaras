@@ -3,6 +3,23 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        @stack('head')
+
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied',
+                'functionality_storage': 'denied'
+            });
+        </script>
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -19,5 +36,9 @@
         @yield('content')
 
         <x-footer />
+
+        @stack('scripts')
+        <!-- Cookie Banner -->
+        <x-cookie-banner />
     </body>
 </html>

@@ -137,12 +137,12 @@
                                 @endif
 
                                 <!-- Rating Badge -->
-                                <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur-sm rounded-lg px-3 py-1 flex items-center">
+                                {{-- <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur-sm rounded-lg px-3 py-1 flex items-center">
                                     <div class="flex text-yellow-400 mr-1">
                                         ★★★★☆
                                     </div>
                                     <span class="text-sm font-semibold text-gray-900">4.5</span>
-                                </div>
+                                </div> --}}
 
                                 <!-- Specialty Badge -->
                                 @if($user->idikotita)
@@ -155,7 +155,7 @@
                             <!-- Content -->
                             <div class="p-6">
                                 <div class="flex items-start justify-between mb-4">
-                                    <div>
+                                    <a href="{{ route('find.show', $user) }}" >
                                         <h3 class="text-xl font-bold text-gray-900 mb-1">{{ $user->name }}</h3>
                                         @if($user->user_address)
                                             <p class="text-sm text-gray-600 flex items-center">
@@ -166,7 +166,7 @@
                                                 {{ $user->user_address['city'] ?? 'N/A' }}
                                             </p>
                                         @endif
-                                    </div>
+                                    </a>
                                     <div class="text-right">
                                         <div class="text-sm text-gray-500">Από €50</div>
                                         <div class="text-xs text-gray-400">ανά ώρα</div>

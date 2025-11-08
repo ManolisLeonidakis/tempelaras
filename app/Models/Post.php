@@ -20,9 +20,4 @@ class Post extends Model
     {
         return $this->morphMany(Image::class, 'watchable');
     }
-
-    public function image()
-    {
-        return $this->morphOne(Image::class, 'watchable')->oldest();
-    }
 }

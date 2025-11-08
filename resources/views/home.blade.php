@@ -282,7 +282,7 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    {{-- <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">
@@ -355,7 +355,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Final CTA -->
     <section class="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white cta-section">
