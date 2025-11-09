@@ -12,6 +12,17 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// About page
+Route::view('/about', 'about')->name('about');
+
+// Terms of Use page
+Route::view('/terms', 'terms')->name('terms');
+
+// Contact page
+use App\Http\Controllers\ContactController;
+Route::get('/contact', [ContactController::class, 'create'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -68,11 +68,11 @@
             <div>
                 <h3 class="text-lg font-semibold mb-6 text-white">Εταιρεία</h3>
                 <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Σχετικά με Εμάς</a></li>
+                    <li><a href="{{ route('about') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Σχετικά με Εμάς</a></li>
                     <li><a href="{{ route('posts.index') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Blog</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Επικοινωνία</a></li>
+                    <li><a href="{{ route('contact') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Επικοινωνία</a></li>
                     <li><a href="{{ route('faq') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Συχνές Ερωτήσεις</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Όροι Χρήσης</a></li>
+                    <li><a href="{{ route('terms') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Όροι Χρήσης</a></li>
                 </ul>
             </div>
         </div>
@@ -105,8 +105,8 @@
                 </div>
                 <div class="flex space-x-6 text-sm">
                     <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Πολιτική Απορρήτου</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Όροι Χρήσης</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Επικοινωνία</a>
+                    <a href="{{ route('terms') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Όροι Χρήσης</a>
+                    <a href="{{ route('contact') }}" class="text-gray-400 hover:text-white transition-colors duration-200">Επικοινωνία</a>
                 </div>
             </div>
         </div>
