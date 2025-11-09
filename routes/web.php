@@ -52,6 +52,10 @@ Route::get('/vrikes-mastora', [FindController::class, 'index'])->name('find');
 
 Route::get('/vrikes-mastora/{user}', [FindController::class, 'show'])->name('find.show');
 
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
+
 Route::post('/cookie-consent', function (Illuminate\Http\Request $request) {
     $request->validate([
         'consent' => 'required|in:accepted,rejected',

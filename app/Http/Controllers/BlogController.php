@@ -60,7 +60,7 @@ class BlogController extends Controller
         $originalSlug = $data['slug'];
         $count = 1;
         while (Post::where('slug', $data['slug'])->exists()) {
-            $data['slug'] = $originalSlug . '-' . $count;
+            $data['slug'] = $originalSlug.'-'.$count;
             $count++;
         }
 
@@ -71,7 +71,7 @@ class BlogController extends Controller
             $imagePath = $request->file('image')->store('images', 'public');
 
             // Create new image record.
-            $post->image()->create([
+            $post->images()->create([
                 'url' => $imagePath,
                 'watchable_type' => Post::class,
                 'watchable_id' => $post->id,
@@ -112,7 +112,7 @@ class BlogController extends Controller
             $originalSlug = $data['slug'];
             $count = 1;
             while (Post::where('slug', $data['slug'])->where('id', '!=', $post->id)->exists()) {
-                $data['slug'] = $originalSlug . '-' . $count;
+                $data['slug'] = $originalSlug.'-'.$count;
                 $count++;
             }
         }
@@ -122,7 +122,7 @@ class BlogController extends Controller
         // Handle image upload
         if ($request->hasFile('image')) {
             if ($post->image) {
-                \Storage::delete('public/' . $post->image->url);
+                \Storage::delete('public/'.$post->image->url);
                 $post->image->delete();
             }
 

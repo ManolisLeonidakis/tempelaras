@@ -71,7 +71,7 @@
                     <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Σχετικά με Εμάς</a></li>
                     <li><a href="{{ route('posts.index') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Blog</a></li>
                     <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Επικοινωνία</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Συχνές Ερωτήσεις</a></li>
+                    <li><a href="{{ route('faq') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Συχνές Ερωτήσεις</a></li>
                     <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm">Όροι Χρήσης</a></li>
                 </ul>
             </div>

@@ -110,17 +110,6 @@
 
                     <div class="flex space-x-3">
                         <button
-                            type="button"
-                            onclick="saveDraft()"
-                            class="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
-                        >
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                            </svg>
-                            Αποθήκευση ως Πρόχειρο
-                        </button>
-
-                        <button
                             type="submit"
                             class="inline-flex items-center px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                         >
@@ -147,56 +136,4 @@
         </div>
     </div>
 </div>
-
-<script>
-function saveDraft() {
-    // Save current content as draft in localStorage
-    const formData = new FormData(document.querySelector('form'));
-    const draft = {
-        title: formData.get('title'),
-        description: formData.get('description'),
-        body: formData.get('body'),
-        savedAt: new Date().toISOString()
-    };
-
-    localStorage.setItem('post_draft', JSON.stringify(draft));
-
-    // Show success message
-    showNotification('Το πρόχειρο αποθηκεύτηκε!', 'success');
-}
-
-function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg font-semibold shadow-lg transform transition-all duration-300 translate-x-full ${
-        type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-    }`;
-    notification.textContent = message;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.remove('translate-x-full');
-    }, 100);
-
-    setTimeout(() => {
-        notification.classList.add('translate-x-full');
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// Load draft on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const draft = localStorage.getItem('post_draft');
-    if (draft) {
-        const data = JSON.parse(draft);
-        document.getElementById('title').value = data.title || '';
-        document.getElementById('description').value = data.description || '';
-        document.getElementById('body').value = data.body || '';
-
-        showNotification('Φορτώθηκε το αποθηκευμένο πρόχειρο', 'success');
-    }
-});
-</script>
 @endsection
