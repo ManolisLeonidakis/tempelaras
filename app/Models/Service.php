@@ -48,8 +48,8 @@ class Service extends Model
      */
     public function getFormattedRateAttribute()
     {
-        if (! $this->rate_amount) {
-            return 'Επικοινωνήστε για τιμές';
+        if ($this->rate_type === 'none' || ! $this->rate_amount) {
+            return 'Επικοινωνήστε για πληροφορίες';
         }
 
         $unit = match ($this->rate_type) {

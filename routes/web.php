@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FindController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -17,9 +18,6 @@ Route::view('/about', 'about')->name('about');
 
 // Terms of Use page
 Route::view('/terms', 'terms')->name('terms');
-
-// Contact page
-use App\Http\Controllers\ContactController;
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
 
@@ -63,6 +61,8 @@ Route::get('/vrikes-mastora', [FindController::class, 'index'])->name('find');
 
 Route::get('/vrikes-mastora/{user}', [FindController::class, 'show'])->name('find.show');
 
+Route::post('/contact-professional/{user}', [ContactController::class, 'sendToProfessional'])->name('contact.professional');
+
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
@@ -88,4 +88,4 @@ Route::post('/cookie-consent', function (Illuminate\Http\Request $request) {
     return response()->json(['success' => true]);
 })->name('cookie.consent');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

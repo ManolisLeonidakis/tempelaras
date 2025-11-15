@@ -37,7 +37,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
-            'rate_type' => 'required|in:fixed,per_hour,per_square_meter',
+            'rate_type' => 'required|in:fixed,per_hour,per_square_meter,none',
             'rate_amount' => 'nullable|numeric|min:0|decimal:0,2',
             'rate_currency' => 'nullable|string|size:3|in:EUR,USD',
         ]);
@@ -77,7 +77,7 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
-            'rate_type' => 'required|in:fixed,per_hour,per_square_meter',
+            'rate_type' => 'required|in:fixed,per_hour,per_square_meter,none',
             'rate_amount' => 'nullable|numeric|min:0|decimal:0,2',
             'rate_currency' => 'nullable|string|size:3|in:EUR,USD',
         ]);

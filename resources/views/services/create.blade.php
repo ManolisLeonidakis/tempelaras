@@ -50,8 +50,17 @@
                         <label class="block text-sm font-medium text-gray-700 mb-3">Τύπος Τιμολόγησης</label>
                         <div class="space-y-3">
                             <div class="flex items-center">
+                                <input type="radio" id="none" name="rate_type" value="none"
+                                       {{ old('rate_type', 'none') === 'none' ? 'checked' : '' }}
+                                       class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                                <label for="none" class="ml-3 block text-sm font-medium text-gray-700">
+                                    Να μην εμφανίζετε τιμή
+                                </label>
+                            </div>
+
+                            <div class="flex items-center">
                                 <input type="radio" id="fixed" name="rate_type" value="fixed"
-                                       {{ old('rate_type', 'fixed') === 'fixed' ? 'checked' : '' }}
+                                       {{ old('rate_type') === 'fixed' ? 'checked' : '' }}
                                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
                                 <label for="fixed" class="ml-3 block text-sm font-medium text-gray-700">
                                     Σταθερή Τιμή
@@ -156,7 +165,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateRateSection() {
         const selectedRateType = document.querySelector('input[name="rate_type"]:checked').value;
 
-        if (selectedRateType === 'fixed' || selectedRateType === 'per_hour' || selectedRateType === 'per_square_meter') {
+        if (selectedRateType === 'none') {
+            rateAmountSection.style.display = 'none';
+            rateAmountInput.required = false;
+            rateAmountInput.value = '';
+        } else if (selectedRateType === 'fixed' || selectedRateType === 'per_hour' || selectedRateType === 'per_square_meter') {
             rateAmountSection.style.display = 'block';
             rateAmountInput.required = true;
         }
@@ -171,7 +184,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let previewText = '';
 
-        if (amount > 0) {
+        if (selectedRateType === 'none') {
+            previewText = 'Επικοινωνήστε για πληροφορίες';
+        } else if (amount > 0) {
             const unit = selectedRateType === 'per_hour' ? 'ανά ώρα' :
                         selectedRateType === 'per_square_meter' ? 'ανά τ.μ.' : '';
             previewText = `${amount.toFixed(2)} € ${unit}`.trim();

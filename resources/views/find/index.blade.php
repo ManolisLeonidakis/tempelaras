@@ -153,7 +153,7 @@
                             </div>
 
                             <!-- Content -->
-                            <div class="p-6">
+                            <div class="p-6 flex-1">
                                 <div class="flex items-start justify-between mb-4">
                                     <a href="{{ route('find.show', $user) }}" >
                                         <h3 class="text-xl font-bold text-gray-900 mb-1">{{ $user->name }}</h3>
@@ -163,35 +163,15 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                                 </svg>
-                                                {{ $user->user_address['city'] ?? 'N/A' }}
+                                                {{ $user->city ?? 'N/A' }}
                                             </p>
                                         @endif
                                     </a>
-                                    <div class="text-right">
-                                        <div class="text-sm text-gray-500">Από €50</div>
-                                        <div class="text-xs text-gray-400">ανά ώρα</div>
-                                    </div>
                                 </div>
 
                                 @if($user->description)
                                     <p class="text-gray-700 text-sm mb-4 line-clamp-3">{{ Str::limit($user->description, 120) }}</p>
                                 @endif
-
-                                <!-- Stats -->
-                                <div class="grid grid-cols-3 gap-4 mb-6">
-                                    <div class="text-center">
-                                        <div class="text-lg font-bold text-blue-600 stat-number">24</div>
-                                        <div class="text-xs text-gray-500">Εργασίες</div>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="text-lg font-bold text-green-600 stat-number">2</div>
-                                        <div class="text-xs text-gray-500">Χρόνια</div>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="text-lg font-bold text-purple-600 stat-number">98%</div>
-                                        <div class="text-xs text-gray-500">Ικανοποίηση</div>
-                                    </div>
-                                </div>
 
                                 <!-- Contact Buttons -->
                                 <div class="flex space-x-3">
@@ -211,6 +191,16 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                                             </svg>
                                             Κινητό
+                                        </a>
+                                    @endif
+                                    @if (!$user->phone && !$user->mobile)
+                                        <!-- Contact Form Modal Trigger -->
+                                        <a href="{{ route('find.show', $user) }}"
+                                            class="w-full justify-center inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg profile-contact-btn">
+                                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                            </svg>
+                                            Mέσω Email
                                         </a>
                                     @endif
                                 </div>

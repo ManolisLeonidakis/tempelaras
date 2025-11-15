@@ -5,9 +5,9 @@
             <div class="flex-shrink-0">
                 <a href="{{ route('home') }}" class="flex items-center">
                     <img
-                        src="{{ asset('images/logo.png') }}"
+                        src="{{ asset('images/logo.svg') }}"
                         alt="Vres Mastora Logo"
-                        class="h-12 w-auto"
+                        class="h-10 sm:h-20 w-auto"
                     />
                 </a>
             </div>

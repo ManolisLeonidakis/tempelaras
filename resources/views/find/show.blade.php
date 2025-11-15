@@ -61,9 +61,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                             <span class="text-lg">
-                                {{ $user->user_address['street'] ?? '' }},
-                                {{ $user->city ?? '' }},
-                                {{ $user->user_address['postal_code'] ?? '' }}
+                                {{ $user->user_address['street'] ? $user->user_address['street'] . ', ' : '' }}
+                                {{ $user->city ?? '' }}
+                                {{ $user->user_address['postal_code'] ? ', ' . $user->user_address['postal_code'] : '' }}
                             </span>
                         </div>
                     @endif
@@ -76,7 +76,7 @@
                                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                 </svg>
-                                Κλήση {{ $user->phone }}
+                                Κλήση
                             </a>
                         @endif
                         @if ($user->mobile)
@@ -85,8 +85,19 @@
                                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                                 </svg>
-                                Κινητό {{ $user->mobile }}
+                                Κινητό
                             </a>
+                        @endif
+                        @if (!$user->phone && !$user->mobile)
+                            <!-- Contact Form Modal Trigger -->
+                            <button type="button"
+                                onclick="openContactModal()"
+                                class="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg profile-contact-btn">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                Επικοινωνία μέσω Email
+                            </button>
                         @endif
                     </div>
                 </div>
@@ -95,7 +106,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-12 bg-white border-b profile-stats">
+    {{-- <section class="py-12 bg-white border-b profile-stats">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center">
@@ -116,7 +127,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -179,14 +190,6 @@
                                                     <div class="text-sm font-semibold text-emerald-700">{{ $service->formatted_rate }}</div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="ml-4">
-                                            <button class="inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors duration-200 transform hover:scale-105 text-sm">
-                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                                </svg>
-                                                Επικοινωνία
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -360,6 +363,18 @@
                             Επικοινωνία
                         </a>
 
+                        @if (!$user->phone && !$user->mobile)
+                            <!-- Contact Form Modal Trigger -->
+                            <button type="button"
+                                onclick="openContactModal()"
+                                class="w-full inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg profile-contact-btn">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                Επικοινωνία μέσω Email
+                            </button>
+                        @endif
+
                         <!-- Wishlist Button -->
                         <div class="mt-6 flex justify-center w-full">
                             <button
@@ -418,8 +433,102 @@
         </div>
     </div>
 </div>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+    <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-gray-900">Επικοινωνία με {{ $user->name }}</h3>
+                <button onclick="closeContactModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <form method="POST" action="{{ route('contact.professional', $user) }}" class="space-y-4">
+                @csrf
+                <div>
+                    <label for="contact_name" class="block text-sm font-medium text-gray-700 mb-1">Όνομα *</label>
+                    <input type="text" id="contact_name" name="name" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @error('name')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <input type="email" id="contact_email" name="email" required
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @error('email')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="contact_phone" class="block text-sm font-medium text-gray-700 mb-1">Τηλέφωνο</label>
+                    <input type="tel" id="contact_phone" name="phone"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    @error('phone')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="contact_message" class="block text-sm font-medium text-gray-700 mb-1">Μήνυμα *</label>
+                    <textarea id="contact_message" name="message" rows="4" required
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              placeholder="Περιγράψτε την εργασία που χρειάζεστε..."></textarea>
+                    @error('message')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-4">
+                    <button type="button" onclick="closeContactModal()"
+                            class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">
+                        Ακύρωση
+                    </button>
+                    <button type="submit"
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                        Αποστολή Μηνύματος
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
     @vite(['resources/js/worker.js'])
+
+    <script>
+        function openContactModal() {
+            document.getElementById('contactModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !document.getElementById('contactModal').classList.contains('hidden')) {
+                closeContactModal();
+            }
+        });
+    </script>
 @endpush
