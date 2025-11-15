@@ -1,2 +1,18 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Block access to sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /storage/app/
+Disallow: /storage/logs/
+
+# Allow access to CSS, JS, and images
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+Allow: /build/
+
+# Sitemap
+Sitemap: {{ url('/sitemap.xml') }}

@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Βρείτε Επαγγελματίες - Vres Mastora')
+@section('description', 'Αναζητήστε και βρείτε τους καλύτερους επαγγελματίες στην περιοχή σας. Φιλτράρετε ανά ειδικότητα και πόλη για να βρείτε τον ιδανικό τεχνίτη για τις εργασίες σας.')
+@section('keywords', 'επαγγελματίες, αναζήτηση, υδραυλικοί, ηλεκτρολόγοι, τεχνίτες, Ελλάδα, πόλεις, ειδικότητες')
+@section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
+@section('og_type', 'website')
+
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Search Header -->

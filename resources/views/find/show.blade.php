@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title', $user->name . ' - ' . ($user->idikotita ?? 'Επαγγελματίας') . ' | Vres Mastora')
+@section('description', 'Επικοινωνήστε με τον ' . $user->name . ', ' . ($user->idikotita ?? 'επαγγελματία') . ' στην περιοχή ' . ($user->city ?? 'Ελλάδα') . '. Δείτε τις υπηρεσίες, τα έργα και τις κριτικές του.')
+@section('keywords', 'επαγγελματίας, ' . ($user->idikotita ?? '') . ', ' . ($user->city ?? '') . ', υπηρεσίες, έργα, κριτικές, επικοινωνία')
+@section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
+@section('og_type', 'profile')
+@section('og_title', $user->name . ' - ' . ($user->idikotita ?? 'Επαγγελματίας'))
+@section('og_description', 'Επικοινωνήστε με τον ' . $user->name . ' για τις εργασίες σας. ' . ($user->idikotita ?? 'Επαγγελματίας') . ' με εμπειρία στην περιοχή ' . ($user->city ?? 'Ελλάδα'))
+
 @section('content')
 <div class="min-h-screen bg-gray-50">
     <!-- Profile Header -->

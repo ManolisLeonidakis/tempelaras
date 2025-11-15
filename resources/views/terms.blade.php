@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Όροι Χρήσης - Vres Mastora')
+@section('description', 'Διαβάστε τους όρους χρήσης της πλατφόρμας Vres Mastora. Μάθετε για τα δικαιώματα και τις υποχρεώσεις σας κατά τη χρήση των υπηρεσιών μας.')
+@section('keywords', 'όροι χρήσης, νομικοί όροι, δικαιώματα, υποχρεώσεις, Vres Mastora, πολιτική')
+@section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
+@section('og_type', 'article')
+
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
     <!-- Header -->

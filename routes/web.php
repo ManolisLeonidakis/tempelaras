@@ -13,7 +13,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// About page
+// About page.
 Route::view('/about', 'about')->name('about');
 
 // Terms of Use page
@@ -67,6 +67,10 @@ Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
 
+Route::get('/sitemap.xml', function () {
+    return response()->view('sitemap')->header('Content-Type', 'text/xml');
+})->name('sitemap');
+
 Route::post('/cookie-consent', function (Illuminate\Http\Request $request) {
     $request->validate([
         'consent' => 'required|in:accepted,rejected',
@@ -88,4 +92,4 @@ Route::post('/cookie-consent', function (Illuminate\Http\Request $request) {
     return response()->json(['success' => true]);
 })->name('cookie.consent');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

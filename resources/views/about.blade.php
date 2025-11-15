@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Σχετικά με Εμάς - Vres Mastora')
+@section('description', 'Μάθετε περισσότερα για την πλατφόρμα Vres Mastora. Η αποστολή μας είναι να συνδέουμε πελάτες με τους καλύτερους επαγγελματίες σε όλη την Ελλάδα.')
+@section('keywords', 'Vres Mastora, σχετικά, αποστολή, ομάδα, πλατφόρμα, επαγγελματίες, πελάτες, Ελλάδα')
+@section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
+@section('og_type', 'about')
+
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
     <!-- Hero -->
@@ -12,8 +18,8 @@
                         Σχετικά με εμάς
                     </h1>
                     <p class="mt-6 text-lg text-gray-600 leading-relaxed">
-                        Το Tempelaras φέρνει κοντά επαγγελματίες και πελάτες με τον πιο απλό και αξιόπιστο τρόπο. 
-                        Στόχος μας είναι να κάνουμε την εύρεση του κατάλληλου επαγγελματία γρήγορη, διαφανή και ευχάριστη, 
+                        Το Tempelaras φέρνει κοντά επαγγελματίες και πελάτες με τον πιο απλό και αξιόπιστο τρόπο.
+                        Στόχος μας είναι να κάνουμε την εύρεση του κατάλληλου επαγγελματία γρήγορη, διαφανή και ευχάριστη,
                         με έμφαση στην ποιότητα, την ασφάλεια και την εμπιστοσύνη.
                     </p>
                     <div class="mt-8 flex flex-col sm:flex-row gap-4">
