@@ -35,7 +35,7 @@ jobs:
           npm ci
           npm run build
 
-      # 6) Deploy via FTP (no vendor/node_modules)
+      # 5) Deploy via FTP (no vendor/node_modules)
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
@@ -53,7 +53,7 @@ jobs:
             **/storage/framework/cache/data/**
             **/storage/app/public/**
 
-      # 7) SSH commands on SiteGround
+      # 6) SSH commands on SiteGround
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@master
         with:
