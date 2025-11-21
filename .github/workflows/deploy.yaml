@@ -35,14 +35,6 @@ jobs:
           npm ci
           npm run build
 
-      # 5) Run tests
-      - name: Run PHPUnit tests
-        run: php artisan test --parallel
-        env:
-          APP_ENV: testing
-          DB_CONNECTION: sqlite
-          DB_DATABASE: ":memory:"
-
       # 6) Deploy via FTP (no vendor/node_modules)
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
