@@ -87,7 +87,7 @@
             <div class="mt-8 grid md:grid-cols-3 gap-6">
                 <div class="p-6 bg-white rounded-xl shadow border border-gray-100">
                     <div class="text-gray-900 font-semibold">Email</div>
-                    <div class="text-gray-600 mt-1">{{ config('mail.from.address') ?? 'support@tempelaras.local' }}</div>
+                    <div class="text-gray-600 mt-1">{{ config('mail.from.address') ?? 'contact@fixado.gr' }}</div>
                 </div>
                 <div class="p-6 bg-white rounded-xl shadow border border-gray-100">
                     <div class="text-gray-900 font-semibold">Ώρες</div>

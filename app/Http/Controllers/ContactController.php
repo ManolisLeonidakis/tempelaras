@@ -25,17 +25,18 @@ class ContactController extends Controller
     {
         $data = $request->validated();
 
-        $to = config('mail.from.address') ?: 'admin@tempelaras.local';
+        $to = config('mail.from.address') ?: 'contact@fixado.gr';
 
         try {
-            $subject = '[Contact] '.($data['subject'] ?? 'Νέο μήνυμα');
-            $body = "Όνομα: {$data['name']}\nEmail: {$data['email']}\nΤηλέφωνο: ".($data['phone'] ?? '-')."\n\nΜήνυμα:\n{$data['message']}";
+            $subject = '[Contact] ' . ($data['subject'] ?? 'Νέο μήνυμα');
+            $body = "Όνομα: {$data['name']}\nEmail: {$data['email']}\nΤηλέφωνο: " . ($data['phone'] ?? '-') . "\n\nΜήνυμα:\n{$data['message']}";
 
             Mail::raw($body, function ($message) use ($to, $subject) {
                 $message->to($to)->subject($subject);
             });
-        } catch (\Throwable $e) {
-            Log::error('Contact mail failed: '.$e->getMessage(), ['exception' => $e]);
+        }
+        catch (\Throwable $e) {
+            Log::error('Contact mail failed: ' . $e->getMessage(), ['exception' => $e]);
         }
 
         return back()->with('status', 'contact-sent');
@@ -50,13 +51,14 @@ class ContactController extends Controller
 
         try {
             $subject = '[Επικοινωνία] Νέο μήνυμα από πελάτη';
-            $body = "Όνομα: {$data['name']}\nEmail: {$data['email']}\nΤηλέφωνο: ".($data['phone'] ?? '-')."\n\nΜήνυμα:\n{$data['message']}\n\nΕπαγγελματίας: {$user->name}";
+            $body = "Όνομα: {$data['name']}\nEmail: {$data['email']}\nΤηλέφωνο: " . ($data['phone'] ?? '-') . "\n\nΜήνυμα:\n{$data['message']}\n\nΕπαγγελματίας: {$user->name}";
 
             Mail::raw($body, function ($message) use ($user, $subject) {
                 $message->to($user->email)->subject($subject);
             });
-        } catch (\Throwable $e) {
-            Log::error('Professional contact mail failed: '.$e->getMessage(), ['exception' => $e]);
+        }
+        catch (\Throwable $e) {
+            Log::error('Professional contact mail failed: ' . $e->getMessage(), ['exception' => $e]);
 
             return back()->with('error', 'Υπήρξε πρόβλημα με την αποστολή του μηνύματος.');
         }
