@@ -48,7 +48,7 @@
                             <img
                                 id="mainImage"
                                 class="w-full h-full object-cover"
-                                src="{{ Storage::url($project->images->first()->url) }}"
+                                src="{{ asset('storage/app/public' . $project->images->first()->url) }}"
                                 alt="{{ $project->title }}"
                             >
                         </div>
@@ -59,12 +59,12 @@
                                 <div class="grid grid-cols-4 md:grid-cols-6 gap-4">
                                     @foreach($project->images as $image)
                                         <button
-                                            onclick="changeImage('{{ Storage::url($image->url) }}')"
+                                            onclick="changeImage('{{  asset('storage/app/public/' . $image->url) }}')"
                                             class="aspect-square rounded-lg overflow-hidden hover:ring-4 hover:ring-orange-500 transition-all focus:ring-4 focus:ring-orange-500 focus:outline-none"
                                         >
                                             <img
                                                 class="w-full h-full object-cover"
-                                                src="{{ Storage::url($image->url) }}"
+                                                src="{{  asset('storage/app/public/' . $image->url) }}"
                                                 alt="{{ $project->title }}"
                                             >
                                         </button>
