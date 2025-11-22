@@ -309,7 +309,7 @@
                                     <div class="grid grid-cols-3 gap-2 mb-4">
                                         @foreach($project->images->take(3) as $image)
                                             <div class="relative aspect-square rounded-lg overflow-hidden">
-                                                <img src="{{ Storage::url($image->url) }}"
+                                                <img src="{{  asset('storage/app/public/' . $image->url) }}"
                                                      alt="{{ $project->title }}"
                                                      class="w-full h-full object-cover">
                                             </div>

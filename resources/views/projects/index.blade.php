@@ -25,7 +25,7 @@
                                 <div class="h-64 overflow-hidden bg-gray-200">
                                     <img
                                         class="w-full h-full object-cover"
-                                        src="{{ Storage::url($project->images->first()->url) }}"
+                                        src="{{  asset('storage/app/public/' . $project->images->first()->url) }}"
                                         alt="{{ $project->title }}"
                                     >
                                 </div>
@@ -48,7 +48,7 @@
                                         @if($project->user->image)
                                             <img
                                                 class="w-10 h-10 rounded-full object-cover"
-                                                src="{{ Storage::url($project->user->image->url) }}"
+                                                src="{{  asset('storage/app/public/' . $project->user->image->url) }}"
                                                 alt="{{ $project->user->name }}"
                                             >
                                         @else

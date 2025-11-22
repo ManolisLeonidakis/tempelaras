@@ -24,7 +24,7 @@
                                 @if($worker->image)
                                     <img
                                         class="w-full h-full object-cover"
-                                        src="{{ Storage::url($worker->image->url) }}"
+                                        src="{{  asset('storage/app/public/' . $worker->image->url) }}"
                                         alt="{{ $worker->name }}"
                                     >
                                 @else

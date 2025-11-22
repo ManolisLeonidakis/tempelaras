@@ -48,7 +48,7 @@
                             <img
                                 id="mainImage"
                                 class="w-full h-full object-cover"
-                                src="{{ asset('storage/app/public' . $project->images->first()->url) }}"
+                                src="{{ asset('storage/app/public/' . $project->images->first()->url) }}"
                                 alt="{{ $project->title }}"
                             >
                         </div>
@@ -99,7 +99,7 @@
                         @if($project->user->image)
                             <img
                                 class="w-16 h-16 rounded-full object-cover border-2 border-orange-500"
-                                src="{{ Storage::url($project->user->image->url) }}"
+                                src="{{  asset('storage/app/public/' . $project->user->image->url) }}"
                                 alt="{{ $project->user->name }}"
                             >
                         @else
