@@ -15,4 +15,4 @@ Allow: /fonts/
 Allow: /build/
 
 # Sitemap
-Sitemap: "https://fixado.gr/sitemap.xml
+Sitemap: "https://fixado.gr/sitemap.xml"
