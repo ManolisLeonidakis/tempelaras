@@ -128,7 +128,7 @@
                                     <a href="{{ route('find.show', $user) }}">
                                         <img
                                             class="w-full h-full object-cover"
-                                            src="{{ asset('storage/' . $user->image->url) }}"
+                                            src="{{ asset('storage/app/public/' . $user->image->url) }}"
                                             alt="{{ $user->name }}"
                                         >
                                     </a>

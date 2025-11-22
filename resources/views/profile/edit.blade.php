@@ -39,7 +39,7 @@
                     <div class="flex items-center space-x-6">
                         <div class="relative">
                             @if($user->image)
-                                <img src="{{ asset('storage/' . $user->image->url) }}"
+                                <img src="{{ asset('storage/app/public/' . $user->image->url) }}"
                                      alt="Profile Picture"
                                      class="w-24 h-24 rounded-full object-cover border-4 border-gray-200">
                             @else

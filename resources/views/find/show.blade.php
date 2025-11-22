@@ -20,7 +20,7 @@
                         @if($user->image)
                             <img
                                 class="w-full h-full object-cover"
-                                src="{{ asset('storage/' . $user->image->url) }}"
+                                src="{{ asset('storage/app/public/' . $user->image->url) }}"
                                 alt="{{ $user->name }}"
                             >
                         @else
@@ -224,7 +224,7 @@
                                             <div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                                 <img
                                                     class="w-full h-full object-cover"
-                                                    src="{{ asset('storage/' . $project->images->first()->url) }}"
+                                                    src="{{ asset('storage/app/public/' . $project->images->first()->url) }}"
                                                     alt="{{ $project->title }}"
                                                 >
                                             </div>

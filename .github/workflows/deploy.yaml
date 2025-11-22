@@ -43,7 +43,6 @@ jobs:
           username: ${{ secrets.SG_FTP_USER }}
           password: ${{ secrets.SG_FTP_PASS }}
           server-dir: fixado.gr/public_html/
-          timeout: 120000
           exclude: |
             **/vendor/**
             **/node_modules/**
