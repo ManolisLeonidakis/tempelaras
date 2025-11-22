@@ -79,7 +79,7 @@
     @endforeach
 
     <!-- Dynamic URLs for posts will be added here -->
-    @foreach(\App\Models\Post::published()->take(100)->get() as $post)
+    @foreach(\App\Models\Post::take(100)->get() as $post)
     <url>
         <loc>{{ url('/posts/' . $post->slug) }}</loc>
         <lastmod>{{ $post->updated_at->format('Y-m-d') }}</lastmod>
