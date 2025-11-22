@@ -11,6 +11,7 @@
         <meta name="keywords" content="@yield('keywords', 'επαγγελματίες, υδραυλικοί, ηλεκτρολόγοι, τεχνίτες, Ελλάδα, υπηρεσίες, εργασίες')">
         <meta name="author" content="Vres Mastora">
         <meta name="robots" content="@yield('robots', 'index, follow')">
+        <meta name="google-site-verification" content="jMLtgtiQCZOHlgRPK8F-VuOTe6bFVygVcXWBQ68SKfo" />
 
         <!-- Canonical URL -->
         <link rel="canonical" href="@yield('canonical', url()->current())">
