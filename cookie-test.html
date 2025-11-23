@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-6">Cookie Consent Test</h1>
+
+        <div class="space-y-4">
+            <div>
+                <h2 class="text-lg font-semibold mb-2">Τρέχοντα Cookies:</h2>
+                <div id="cookies" class="bg-gray-50 p-4 rounded text-sm font-mono">
+                    Loading...
+                </div>
+            </div>
+
+            <div class="flex space-x-4">
+                <button onclick="setCookie('cookie_consent', 'accepted', 365)" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                    Set Accepted
+                </button>
+                <button onclick="setCookie('cookie_consent', 'rejected', 365)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                    Set Rejected
+                </button>
+                <button onclick="deleteCookie('cookie_consent')" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+                    Delete Cookie
+                </button>
+                <button onclick="checkCookies()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Refresh
+                </button>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-semibold mb-2">Cookie Banner Status:</h2>
+                <div id="banner-status" class="bg-gray-50 p-4 rounded">
+                    Loading...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkCookies() {
+            const cookies = document.cookie.split(';').reduce((acc, cookie) => {
+                const [name, value] = cookie.trim().split('=');
+                acc[name] = value;
+                return acc;
+            }, {});
+
+            document.getElementById('cookies').textContent = JSON.stringify(cookies, null, 2);
+
+            const consent = cookies.cookie_consent;
+            const status = consent ? `Cookie consent: ${consent}` : 'No cookie consent set';
+            document.getElementById('banner-status').textContent = status;
+        }
+
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+            checkCookies();
+        }
+
+        function deleteCookie(name) {
+            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+            checkCookies();
+        }
+
+        // Check cookies on load
+        checkCookies();
+    </script>
+</body>
+</html>

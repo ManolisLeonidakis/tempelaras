@@ -1,11 +1,5 @@
 @props(['position' => 'bottom'])
 
-@php
-    $consent = session('cookie_consent', null);
-    $showBanner = !$consent;
-@endphp
-
-@if($showBanner)
 <div
     id="cookie-banner"
     class="fixed {{ $position === 'top' ? 'top-0' : 'bottom-0' }} left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg transform transition-transform duration-300"
@@ -17,6 +11,8 @@
     x-transition:leave="transition ease-in duration-300"
     x-transition:leave-start="transform translate-y-0"
     x-transition:leave-end="transform translate-y-full"
+    style="display: none;"
+    x-init="checkConsent()"
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between space-y-4 md:space-y-0">
@@ -144,14 +140,23 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
 </div>
 
 <script>
 function cookieBanner() {
     return {
-        show: true,
+        show: false,
         showSettings: false,
+
+        checkConsent() {
+            // Check if user has already made a choice
+            const consent = this.getCookie('cookie_consent');
+            if (!consent) {
+                this.show = true;
+            }
+        },
 
         acceptAll() {
             this.setConsent('accepted');
@@ -164,7 +169,11 @@ function cookieBanner() {
         },
 
         setConsent(status) {
-            // Send consent to server
+            // Set cookie that expires in 1 year
+            this.setCookie('cookie_consent', status, 365);
+            this.setCookie('cookie_consent_date', new Date().toISOString(), 365);
+
+            // Send consent to server (optional, for analytics)
             fetch('/cookie-consent', {
                 method: 'POST',
                 headers: {
@@ -182,10 +191,6 @@ function cookieBanner() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Store in localStorage as backup
-                    localStorage.setItem('cookie_consent', status);
-                    localStorage.setItem('cookie_consent_date', new Date().toISOString());
-
                     // Dispatch custom event
                     window.dispatchEvent(new CustomEvent('cookieConsentChanged', {
                         detail: { consent: status }
@@ -194,11 +199,21 @@ function cookieBanner() {
             })
             .catch(error => {
                 console.error('Error saving cookie consent:', error);
-                // Still hide banner even if request fails
-                localStorage.setItem('cookie_consent', status);
             });
+        },
+
+        getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        },
+
+        setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
         }
     }
 }
 </script>
-@endif
