@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Βρείτε Επαγγελματίες - Vres Mastora')
+@php
+    if (request('city')) {
+        $title = (request('idikotita') ?? 'Επαγγελματίες');
+
+        $title .= ' στην περιοχή ' . request('city');
+    } else {
+        $title = 'Βρείτε Επαγγελματίες στην περιοχή σας';
+    }
+@endphp
+
+@section('title', $title)
 @section('description', 'Αναζητήστε και βρείτε τους καλύτερους επαγγελματίες στην περιοχή σας. Φιλτράρετε ανά ειδικότητα και πόλη για να βρείτε τον ιδανικό τεχνίτη για τις εργασίες σας.')
 @section('keywords', 'επαγγελματίες, αναζήτηση, υδραυλικοί, ηλεκτρολόγοι, τεχνίτες, Ελλάδα, πόλεις, ειδικότητες')
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
@@ -128,7 +138,7 @@
                                     <a href="{{ route('find.show', $user) }}">
                                         <img
                                             class="w-full h-full object-cover"
-                                            src="{{ asset('storage/' . $user->image->url) }}"
+                                            src="{{ asset('storage/app/public/' . $user->image->url) }}"
                                             alt="{{ $user->name }}"
                                         >
                                     </a>
