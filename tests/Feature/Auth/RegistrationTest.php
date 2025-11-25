@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -25,7 +26,10 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
+        $user = User::where('email', 'test@example.com')->first();
+
         $this->assertAuthenticated();
+        $this->assertFalse($user->admin, 'Newly registered users should not be admins.');
         $response->assertRedirect(route('home', absolute: false));
     }
 }
