@@ -12,11 +12,11 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
      * @var list<string>
      */
-    protected $guarded = [];
+    protected $guarded = ['admin'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -39,6 +39,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'user_address' => 'array',
+            'admin' => 'boolean',
         ];
     }
 

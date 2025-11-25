@@ -44,7 +44,7 @@
                             onclick="toggleFaq(this)">
                         <div class="flex items-center justify-between">
                             <h3 class="text-xl font-semibold text-gray-900">
-                                Τι είναι η πλατφόρμα "Βρείτε Μαστόρα";
+                                Τι είναι η πλατφόρμα "Fixado";
                             </h3>
                             <svg class="w-6 h-6 text-blue-600 transform transition-transform duration-200 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -53,7 +53,7 @@
                     </button>
                     <div class="px-8 pb-6 faq-content hidden">
                         <p class="text-gray-600 leading-relaxed">
-                            Η πλατφόρμα "Βρείτε Μαστόρα" είναι μια διαδικτυακή υπηρεσία που συνδέει πελάτες με έμπειρους επαγγελματίες σε όλη την Ελλάδα.
+                            Η πλατφόρμα "Fixado" είναι μια διαδικτυακή υπηρεσία που συνδέει πελάτες με έμπειρους επαγγελματίες σε όλη την Ελλάδα.
                             Μπορείτε να βρείτε και να επικοινωνήσετε με υδραυλικούς, ηλεκτρολόγους, ψυκτικούς, ξυλουργούς και άλλους επαγγελματίες για τις εργασίες σας.
                         </p>
                     </div>
