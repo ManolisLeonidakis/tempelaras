@@ -25,9 +25,9 @@ jobs:
       - name: Composer install (with dev)
         run: composer install --prefer-dist --no-interaction
 
-      # 4) Generate APP_KEY for CI
-      - name: Generate APP_KEY
-        run: php artisan key:generate
+      # 4) Set temporary APP_KEY (for CI)
+      - name: Set APP_KEY environment variable
+        run: echo "APP_KEY=base64:$(php -r 'echo base64_encode(random_bytes(32));')" >> $GITHUB_ENV
 
       # 5) Run tests
       - name: Run tests
