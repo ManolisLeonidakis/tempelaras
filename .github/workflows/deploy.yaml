@@ -39,7 +39,7 @@ jobs:
 
       # Upload build artifacts (for next job)
       - name: Upload build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: |
@@ -57,7 +57,7 @@ jobs:
 
       # Download artifacts from previous job
       - name: Download build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
 
