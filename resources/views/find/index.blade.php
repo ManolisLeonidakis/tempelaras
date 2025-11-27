@@ -1,20 +1,30 @@
 @extends('layouts.app')
 
 @php
-    if (request('city')) {
-        $title = (request('idikotita') ?? 'Επαγγελματίες');
-
-        $title .= ' στην περιοχή ' . request('city');
+    // Use provided title and description from controller if available.
+    if (isset($title)) {
+        $pageTitle = $title;
+    } elseif (request('city')) {
+        $pageTitle = (request('idikotita') ?? 'Επαγγελματίες');
+        $pageTitle .= ' στην περιοχή ' . request('city');
     } else {
-        $title = 'Βρείτε Επαγγελματίες στην περιοχή σας';
+        $pageTitle = 'Βρείτε Επαγγελματίες στην περιοχή σας';
     }
+
+    $pageDescription = $description ?? 'Αναζητήστε και βρείτε τους καλύτερους επαγγελματίες στην περιοχή σας. Φιλτράρετε ανά ειδικότητα και πόλη για να βρείτε τον ιδανικό τεχνίτη για τις εργασίες σας.';
 @endphp
 
-@section('title', $title)
-@section('description', 'Αναζητήστε και βρείτε τους καλύτερους επαγγελματίες στην περιοχή σας. Φιλτράρετε ανά ειδικότητα και πόλη για να βρείτε τον ιδανικό τεχνίτη για τις εργασίες σας.')
+@section('title', $pageTitle)
+@section('description', $pageDescription)
 @section('keywords', 'επαγγελματίες, αναζήτηση, υδραυλικοί, ηλεκτρολόγοι, τεχνίτες, Ελλάδα, πόλεις, ειδικότητες')
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
 @section('og_type', 'website')
+
+@push('head')
+    @if(isset($canonicalUrl))
+        <link rel="canonical" href="{{ $canonicalUrl }}">
+    @endif
+@endpush
 
 @section('content')
 <div class="min-h-screen bg-gray-50">

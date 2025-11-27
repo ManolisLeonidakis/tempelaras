@@ -59,7 +59,20 @@ Route::get('/authors/{user}', [BlogController::class, 'index'])->name('author');
 
 Route::get('/vrikes-mastora', [FindController::class, 'index'])->name('find');
 
-Route::get('/vrikes-mastora/{user}', [FindController::class, 'show'])->name('find.show');
+// SEO-friendly routes for specialty and city searches (must come before {user} route).
+Route::get('/vrikes-mastora/{specialty}/{city}', [FindController::class, 'searchBySlug'])
+    ->name('find.specialty.city')
+    ->where('specialty', '[a-z-]+')
+    ->where('city', '[a-z-]+');
+
+Route::get('/vrikes-mastora/{specialty}', [FindController::class, 'searchBySlug'])
+    ->name('find.specialty')
+    ->where('specialty', '[a-z-]+');
+
+// Professional profile - uses numeric constraint to avoid conflicts with specialty slugs.
+Route::get('/vrikes-mastora/{userId}', [FindController::class, 'showById'])
+    ->name('find.show')
+    ->where('userId', '[0-9]+');
 
 Route::post('/contact-professional/{user}', [ContactController::class, 'sendToProfessional'])->name('contact.professional');
 
@@ -70,6 +83,13 @@ Route::get('/faq', function () {
 Route::get('/sitemap.xml', function () {
     return response()->view('sitemap')->header('Content-Type', 'text/xml');
 })->name('sitemap');
+
+// Sitemap sub-files.
+Route::get('/sitemap-main.xml', [App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap.main');
+Route::get('/sitemap-search.xml', [App\Http\Controllers\SitemapController::class, 'searchSitemap'])->name('sitemap.search');
+Route::get('/sitemap-professionals.xml', [App\Http\Controllers\SitemapController::class, 'professionalsSitemap'])->name('sitemap.professionals');
+Route::get('/sitemap-posts.xml', [App\Http\Controllers\SitemapController::class, 'postsSitemap'])->name('sitemap.posts');
+Route::get('/sitemap-projects.xml', [App\Http\Controllers\SitemapController::class, 'projectsSitemap'])->name('sitemap.projects');
 
 Route::post('/cookie-consent', function (Illuminate\Http\Request $request) {
     $request->validate([
