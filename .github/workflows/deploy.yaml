@@ -29,11 +29,7 @@ jobs:
       - name: Set APP_KEY environment variable
         run: echo "APP_KEY=base64:$(php -r 'echo base64_encode(random_bytes(32));')" >> $GITHUB_ENV
 
-      # 5) Run tests
-      - name: Run tests
-        run: php artisan test --parallel
-
-      # 6) Node + Vite build
+      # 5) Node + Vite build
       - name: Install Node
         uses: actions/setup-node@v3
         with:
@@ -43,6 +39,10 @@ jobs:
         run: |
           npm ci
           npm run build
+
+      # 6) Run tests
+      - name: Run tests
+        run: php artisan test --parallel
 
       # 7) Upload artifacts
       - name: Upload build
