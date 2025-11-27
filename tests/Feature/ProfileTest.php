@@ -31,6 +31,7 @@ class ProfileTest extends TestCase
                 'name' => 'Test User',
                 'email' => 'test@example.com',
                 'city' => 'Test City',
+                'description' => 'Test Description',
             ]);
 
         $response
@@ -54,6 +55,7 @@ class ProfileTest extends TestCase
                 'name' => 'Test User',
                 'email' => $user->email,
                 'city' => 'Test City',
+                'description' => 'Test Description',
             ]);
 
         $response

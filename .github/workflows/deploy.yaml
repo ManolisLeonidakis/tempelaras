@@ -5,26 +5,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-  deploy:
+  build_and_test:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Clone repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2) PHP for tests & build
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
           extensions: mbstring, intl, pdo_mysql, zip, bcmath
 
-      # 3) Composer install (no dev) for CI only
-      - name: Composer install (CI)
-        run: composer install --no-dev --optimize-autoloader
+      # Install with dev dependencies for testing
+      - name: Composer install (with dev)
+        run: composer install --prefer-dist --no-interaction
 
-      # 4) Node + Vite
+      # Run tests (artisan test exists here)
+      - name: Run tests
+        run: php artisan test --parallel
+
+      # Build frontend assets
       - name: Install Node
         uses: actions/setup-node@v3
         with:
@@ -35,7 +37,31 @@ jobs:
           npm ci
           npm run build
 
-      # 5) Deploy via FTP (no vendor/node_modules)
+      # Upload build artifacts (for next job)
+      - name: Upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            public/build
+            vendor
+            composer.lock
+
+  deploy:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Download artifacts from previous job
+      - name: Download build
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+
+      # Deploy via FTP (no vendor/node_modules)
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
@@ -44,15 +70,12 @@ jobs:
           password: ${{ secrets.SG_FTP_PASS }}
           server-dir: fixado.gr/public_html/
           exclude: |
-            **/vendor/**
             **/node_modules/**
             **/.git/**
             **/.github/**
             **/storage/*.log
-            **/storage/framework/cache/data/**
-            **/storage/app/public/**
 
-      # 6) SSH commands on SiteGround
+      # Run SSH commands on SiteGround
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@master
         with:
