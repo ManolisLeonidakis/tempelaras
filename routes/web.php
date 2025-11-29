@@ -102,14 +102,10 @@ Route::post('/cookie-consent', function (Illuminate\Http\Request $request) {
     // Store consent in session.
     session(['cookie_consent' => $request->consent]);
 
-    // You can also store in database if needed for logged-in users.
-    /*
-    if (auth()->check()) {
-        auth()->user()->update(['cookie_consent' => $request->consent]);
-    }
-    */
+    // Store consent in cookie for 1 year.
+    $cookie = cookie('cookie_consent', $request->consent, 525600); // 365 days
 
-    return response()->json(['success' => true]);
+    return response()->json(['success' => true])->cookie($cookie);
 })->name('cookie.consent');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

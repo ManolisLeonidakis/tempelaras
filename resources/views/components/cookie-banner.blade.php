@@ -151,9 +151,14 @@ function cookieBanner() {
         showSettings: false,
 
         checkConsent() {
-            // Check if user has already made a choice
+            // Check if user has already made a choice (server-side via session)
+            const hasServerConsent = {{ session()->has('cookie_consent') ? 'true' : 'false' }};
+
+            // Also check browser cookie
             const consent = this.getCookie('cookie_consent');
-            if (!consent) {
+
+            // Only show banner if BOTH are missing
+            if (!hasServerConsent && !consent) {
                 this.show = true;
             }
         },
@@ -173,7 +178,7 @@ function cookieBanner() {
             this.setCookie('cookie_consent', status, 365);
             this.setCookie('cookie_consent_date', new Date().toISOString(), 365);
 
-            // Send consent to server (optional, for analytics)
+            // Send consent to server
             fetch('/cookie-consent', {
                 method: 'POST',
                 headers: {
@@ -191,14 +196,19 @@ function cookieBanner() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    console.log('Cookie consent saved successfully');
                     // Dispatch custom event
                     window.dispatchEvent(new CustomEvent('cookieConsentChanged', {
                         detail: { consent: status }
                     }));
+                    // Reload page to sync session
+                    window.location.reload();
                 }
             })
             .catch(error => {
                 console.error('Error saving cookie consent:', error);
+                // Still reload to sync session from cookie via middleware
+                window.location.reload();
             });
         },
 
