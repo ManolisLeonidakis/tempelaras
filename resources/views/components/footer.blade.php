@@ -7,7 +7,7 @@
                 <div class="flex items-center mb-6">
                     <img
                         src="{{ asset('images/logo_white.svg') }}"
-                        alt="Vres Mastora Logo"
+                        alt="Fixado Logo"
                         class="h-20 w-auto mr-3"
                     />
                 </div>

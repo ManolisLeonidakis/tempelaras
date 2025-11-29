@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $user->name . ' - ' . ($user->idikotita ?? 'Επαγγελματίας') . ' | Vres Mastora')
+@section('title', $user->name . ' - ' . ($user->idikotita ?? 'Επαγγελματίας')')
 @section('description', 'Επικοινωνήστε με τον ' . $user->name . ', ' . ($user->idikotita ?? 'επαγγελματία') . ' στην περιοχή ' . ($user->city ?? 'Ελλάδα') . '. Δείτε τις υπηρεσίες, τα έργα και τις κριτικές του.')
 @section('keywords', 'επαγγελματίας, ' . ($user->idikotita ?? '') . ', ' . ($user->city ?? '') . ', υπηρεσίες, έργα, κριτικές, επικοινωνία')
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')

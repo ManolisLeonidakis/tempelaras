@@ -6,7 +6,7 @@
             <a href="{{ route('home') }}" class="flex items-center">
                 <img
                     src="{{ asset('images/logo.svg') }}"
-                    alt="Vres Mastora Logo"
+                    alt="Fixado Logo"
                     class="h-20 w-auto"
                 />
             </a>

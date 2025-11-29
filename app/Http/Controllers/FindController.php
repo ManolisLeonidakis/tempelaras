@@ -72,7 +72,7 @@ class FindController extends Controller
         $city = $citySlug ? GreekSlugHelper::slugToCity($citySlug) : null;
 
         // If slug not found, 404.
-        if (! $idikotita || ($citySlug && ! $city)) {
+        if (!$idikotita || ($citySlug && !$city)) {
             abort(404);
         }
 
@@ -103,7 +103,7 @@ class FindController extends Controller
         $users = $query->paginate(20);
 
         // Build SEO meta tags.
-        $title = $city ? "Βρες {$idikotita} στην {$city} | Vres Mastora" : "Βρες {$idikotita} | Vres Mastora";
+        $title = $city ? "{$idikotita} στην περιοχή {$city}" : "Βρες {$idikotita} σε όλη την Ελλάδα";
 
         $description = $city ? "Αναζήτηση και επικοινωνία με έμπειρους {$idikotita} στην {$city}. Δες προφίλ, έργα και αξιολογήσεις επαγγελματιών." : "Αναζήτηση και επικοινωνία με έμπειρους {$idikotita} σε όλη την Ελλάδα. Δες προφίλ, έργα και αξιολογήσεις επαγγελματιών.";
 

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Όροι Χρήσης - Vres Mastora')
-@section('description', 'Διαβάστε τους όρους χρήσης της πλατφόρμας Vres Mastora. Μάθετε για τα δικαιώματα και τις υποχρεώσεις σας κατά τη χρήση των υπηρεσιών μας.')
-@section('keywords', 'όροι χρήσης, νομικοί όροι, δικαιώματα, υποχρεώσεις, Vres Mastora, πολιτική')
+@section('title', 'Όροι Χρήσης - Fixado')
+@section('description', 'Διαβάστε τους όρους χρήσης της πλατφόρμας Fixado. Μάθετε για τα δικαιώματα και τις υποχρεώσεις σας κατά τη χρήση των υπηρεσιών μας.')
+@section('keywords', 'όροι χρήσης, νομικοί όροι, δικαιώματα, υποχρεώσεις, Fixado, πολιτική')
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
 @section('og_type', 'article')
 

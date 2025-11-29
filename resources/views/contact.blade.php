@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Επικοινωνία - Vres Mastora')
-@section('description', 'Επικοινωνήστε μαζί μας για οποιαδήποτε ερώτηση ή υποστήριξη. Η ομάδα του Vres Mastora είναι εδώ για να σας βοηθήσει με την πλατφόρμα μας.')
-@section('keywords', 'επικοινωνία, υποστήριξη, βοήθεια, ερωτήσεις, Vres Mastora, τεχνική υποστήριξη')
+@section('title', 'Επικοινωνία - Fixado')
+@section('description', 'Επικοινωνήστε μαζί μας για οποιαδήποτε ερώτηση ή υποστήριξη. Η ομάδα του Fixado είναι εδώ για να σας βοηθήσει με την πλατφόρμα μας.')
+@section('keywords', 'επικοινωνία, υποστήριξη, βοήθεια, ερωτήσεις, Fixado, τεχνική υποστήριξη')
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
 @section('og_type', 'contact')
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Συχνές Ερωτήσεις - Vres Mastora')
-@section('description', 'Βρείτε απαντήσεις στις πιο συχνές ερωτήσεις για την πλατφόρμα Vres Mastora. Μάθετε πώς να εγγραφείτε ως επαγγελματίας, να βρείτε τεχνίτες και να χρησιμοποιήσετε τις υπηρεσίες μας.')
+@section('title', 'Συχνές Ερωτήσεις - Fixado')
+@section('description', 'Βρείτε απαντήσεις στις πιο συχνές ερωτήσεις για την πλατφόρμα Fixado. Μάθετε πώς να εγγραφείτε ως επαγγελματίας, να βρείτε τεχνίτες και να χρησιμοποιήσετε τις υπηρεσίες μας.')
 @section('keywords', 'FAQ, συχνές ερωτήσεις, βοήθεια, υποστήριξη, επαγγελματίες, τεχνίτες, εγγραφή, υπηρεσίες')
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
 @section('og_type', 'article')
