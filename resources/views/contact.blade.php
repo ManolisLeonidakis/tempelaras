@@ -6,6 +6,26 @@
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
 @section('og_type', 'contact')
 
+@push('head')
+@php
+    $contactSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'ContactPage',
+        'name' => 'Επικοινωνία με το Fixado',
+        'description' => 'Επικοινωνήστε μαζί μας για οποιαδήποτε ερώτηση ή υποστήριξη',
+        'url' => url()->current(),
+        'mainEntity' => [
+            '@type' => 'Organization',
+            'name' => 'Fixado',
+            'url' => url('/')
+        ]
+    ];
+@endphp
+<script type="application/ld+json">
+{!! json_encode($contactSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
+
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
     <!-- Header -->

@@ -6,6 +6,62 @@
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
 @section('og_type', 'article')
 
+@push('head')
+@php
+    $faqMainEntity = [
+        [
+            '@type' => 'Question',
+            'name' => 'Τι είναι η πλατφόρμα Fixado;',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Το Fixado είναι μια διαδικτυακή πλατφόρμα που συνδέει πελάτες με επαγγελματίες τεχνίτες σε όλη την Ελλάδα. Μπορείτε να βρείτε υδραυλικούς, ηλεκτρολόγους, και άλλους ειδικευμένους επαγγελματίες για τις εργασίες σας.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Πώς μπορώ να βρω έναν επαγγελματία;',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Χρησιμοποιήστε την αναζήτηση μας επιλέγοντας την ειδικότητα που χρειάζεστε και την πόλη σας. Θα δείτε όλους τους διαθέσιμους επαγγελματίες με κριτικές και τιμές.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Είναι δωρεάν η χρήση της πλατφόρμας;',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Ναι, η αναζήτηση και η επικοινωνία με επαγγελματίες είναι εντελώς δωρεάν για τους πελάτες. Οι επαγγελματίες πληρώνουν μόνο για premium χαρακτηριστικά.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Πώς μπορώ να εγγραφώ ως επαγγελματίας;',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Κάντε κλικ στο κουμπί Εγγραφή και επιλέξτε Επαγγελματίας. Συμπληρώστε τα στοιχεία σας, την ειδικότητά σας και τις περιοχές που εξυπηρετείτε. Θα εξετάσουμε την αίτησή σας και θα σας ενημερώσουμε εντός 24 ωρών.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Πώς λειτουργεί η βαθμολόγηση των επαγγελματιών;',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Οι πελάτες μπορούν να αφήσουν κριτικές και βαθμολογίες μετά την ολοκλήρωση μιας εργασίας. Οι βαθμολογίες βασίζονται σε κριτήρια όπως η ποιότητα εργασίας, η έγκαιρη παράδοση και η επικοινωνία.'
+            ]
+        ]
+    ];
+
+    $faqSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => $faqMainEntity
+    ];
+@endphp
+<script type="application/ld+json">
+{!! json_encode($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
+
 @section('content')
 <div class="min-h-screen">
     <!-- Hero Section -->

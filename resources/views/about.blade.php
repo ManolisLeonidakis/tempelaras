@@ -6,6 +6,31 @@
 @section('robots', 'index, follow, max-snippet:-1, max-image-preview:large')
 @section('og_type', 'about')
 
+@push('head')
+@php
+    $aboutSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'AboutPage',
+        'name' => 'Σχετικά με το Fixado',
+        'description' => 'Το Fixado φέρνει κοντά επαγγελματίες και πελάτες με τον πιο απλό και αξιόπιστο τρόπο.',
+        'url' => url()->current(),
+        'mainEntity' => [
+            '@type' => 'Organization',
+            'name' => 'Fixado',
+            'url' => url('/'),
+            'description' => 'Πλατφόρμα σύνδεσης επαγγελματιών και πελατών',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'addressCountry' => 'GR'
+            ]
+        ]
+    ];
+@endphp
+<script type="application/ld+json">
+{!! json_encode($aboutSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
+
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
     <!-- Hero -->

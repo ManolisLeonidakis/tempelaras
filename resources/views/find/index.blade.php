@@ -24,6 +24,58 @@
     @if(isset($canonicalUrl))
         <link rel="canonical" href="{{ $canonicalUrl }}">
     @endif
+
+    @php
+        $searchSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => $pageTitle,
+            'description' => $pageDescription,
+            'url' => url()->current(),
+            'breadcrumb' => [
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 1,
+                        'name' => 'Αρχική',
+                        'item' => url('/')
+                    ],
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 2,
+                        'name' => 'Αναζήτηση Επαγγελματιών',
+                        'item' => route('find')
+                    ]
+                ]
+            ]
+        ];
+
+        if (request('city') || request('idikotita')) {
+            $searchSchema['potentialAction'] = [
+                '@type' => 'SearchAction',
+                'target' => [
+                    '@type' => 'EntryPoint',
+                    'urlTemplate' => route('find') . '?idikotita={idikotita}&city={city}'
+                ],
+                'query-input' => [
+                    [
+                        '@type' => 'PropertyValueSpecification',
+                        'valueName' => 'idikotita',
+                        'description' => 'Ειδικότητα επαγγελματία'
+                    ],
+                    [
+                        '@type' => 'PropertyValueSpecification',
+                        'valueName' => 'city',
+                        'description' => 'Πόλη αναζήτησης'
+                    ]
+                ]
+            ];
+        }
+    @endphp
+    <script type="application/ld+json">
+    {!! json_encode($searchSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 @endpush
 
 @section('content')

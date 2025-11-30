@@ -1,8 +1,72 @@
 @extends('layouts.app')
 
-@section('description', 'Συνδέστε με έμπειρους επαγγελματίες σε όλη την Ελλάδα. Βρείτε υδραυλικούς, ηλεκτρολόγους, ψυκτικούς και άλλους ειδικευμένους τεχνίτες για τις εργασίες σας. Δωρεάν αναζήτηση και άμεση επικοινωνία.')
-@section('keywords', 'επαγγελματίες, υδραυλικοί, ηλεκτρολόγοι, τεχνίτες, Ελλάδα, υπηρεσίες, εργασίες, σπίτι, επισκευές, κατασκευές')
+@section('title', 'Fixado | Επαγγελματίες για το Σπίτι σας')
+@section('description', 'Βρείτε επαγγελματίες τεχνίτες στη Λάρισα και σε όλη την Ελλάδα. Υδραυλικοί, ηλεκτρολόγοι, ψυκτικοί και περισσότερα. Άμεση επικοινωνία, διαφανείς τιμές, επαληθευμένοι επαγγελματίες.')
+@section('keywords', 'επαγγελματίες Λάρισα, υδραυλικός Λάρισα, ηλεκτρολόγος Λάρισα, τεχνίτες Λάρισα, μάστορες Λάρισα, επισκευές σπιτιού Λάρισα, οικοδομικές εργασίες Λάρισα')
 @section('og_type', 'website')
+
+@push('head')
+@php
+    $professionalServiceSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'ProfessionalService',
+        'name' => 'Fixado - Λάρισα',
+        'description' => 'Πλατφόρμα εύρεσης επαγγελματιών τεχνιτών στη Λάρισα και σε όλη την Ελλάδα',
+        'areaServed' => [
+            '@type' => 'City',
+            'name' => 'Λάρισα',
+            'containedIn' => [
+                '@type' => 'Country',
+                'name' => 'Ελλάδα'
+            ]
+        ],
+        'serviceType' => [
+            'Υδραυλικές εργασίες',
+            'Ηλεκτρολογικές εργασίες',
+            'Οικοδομικές εργασίες',
+            'Επισκευές σπιτιού',
+            'Κηπουρική',
+            'Βαφές'
+        ],
+        'url' => url('/'),
+    ];
+
+    $faqMainEntity = [
+        [
+            '@type' => 'Question',
+            'name' => 'Πώς μπορώ να βρω επαγγελματία στη Λάρισα;',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Χρησιμοποιήστε την αναζήτηση μας επιλέγοντας την ειδικότητα που χρειάζεστε και την πόλη Λάρισα. Θα δείτε όλους τους διαθέσιμους επαγγελματίες με κριτικές και τιμές.'
+            ]
+        ],
+        [
+            '@type' => 'Question',
+            'name' => 'Είναι δωρεάν η χρήση της πλατφόρμας;',
+            'acceptedAnswer' => [
+                '@type' => 'Answer',
+                'text' => 'Ναι, η αναζήτηση και η επικοινωνία με επαγγελματίες είναι εντελώς δωρεάν για τους πελάτες.'
+            ]
+        ]
+    ];
+
+    $faqSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => $faqMainEntity
+    ];
+@endphp
+
+<!-- Local Business Schema for Larisa -->
+<script type="application/ld+json">
+{!! json_encode($professionalServiceSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{!! json_encode($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
 
 @section('content')
 <div class="min-h-screen">
@@ -17,11 +81,11 @@
             <div class="text-center hero-content">
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                     Βρείτε τον <span class="text-yellow-400">Ιδανικό</span><br>
-                    Επαγγελματία για το Σπίτι Σας
+                    Επαγγελματία <span class="text-yellow-300">στη Λάρισα</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-                    Συνδέστε με έμπειρους επαγγελματίες σε όλη την Ελλάδα.
-                    Από υδραυλικούς μέχρι ηλεκτρολόγους - όλα σε ένα μέρος.
+                    Συνδέστε με έμπειρους επαγγελματίες στη Λάρισα και σε όλη την Ελλάδα.
+                    Υδραυλικοί, ηλεκτρολόγοι, τεχνίτες - όλοι σε ένα μέρος.
                 </p>
 
                 <!-- Search Form -->
@@ -102,6 +166,117 @@
             <svg viewBox="0 0 1440 120" class="w-full h-auto">
                 <path fill="#ffffff" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,80C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
             </svg>
+        </div>
+    </section>
+
+    <!-- Larisa Focus Banner -->
+    <section class="py-16 bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-semibold mb-6">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Εξυπηρετούμε τη Λάρισα
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        Επαγγελματίες Τεχνίτες<br>
+                        <span class="text-blue-600">στη Λάρισα</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Χρειάζεστε έναν <strong>υδραυλικό στη Λάρισα</strong>; Έναν <strong>ηλεκτρολόγο</strong> ή άλλον επαγγελματία;
+                        Η πλατφόρμα μας συνδέει τους κατοίκους της Λάρισας με εξειδικευμένους τεχνίτες που μπορούν να αναλάβουν
+                        κάθε εργασία άμεσα και επαγγελματικά.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">50+ Επαγγελματίες</div>
+                                <div class="text-sm text-gray-600">στη Λάρισα</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Άμεση Εξυπηρέτηση</div>
+                                <div class="text-sm text-gray-600">εντός 24 ωρών</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Διαφανείς Τιμές</div>
+                                <div class="text-sm text-gray-600">χωρίς κρυφές χρεώσεις</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Επαληθευμένοι</div>
+                                <div class="text-sm text-gray-600">επαγγελματίες</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('find', ['city' => 'Λάρισα']) }}"
+                       class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        Βρες Επαγγελματία στη Λάρισα
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="{{ route('find.specialty.city', ['specialty' => 'ydraulikos', 'city' => 'larisa']) }}"
+                       class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-blue-100 hover:border-blue-300">
+                        <div class="text-4xl mb-3">🔧</div>
+                        <h3 class="font-bold text-gray-900 mb-1">Υδραυλικός</h3>
+                        <p class="text-sm text-gray-600">Λάρισα</p>
+                    </a>
+
+                    <a href="{{ route('find.specialty.city', ['specialty' => 'ilektrologos', 'city' => 'larisa']) }}"
+                       class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-yellow-100 hover:border-yellow-300">
+                        <div class="text-4xl mb-3">⚡</div>
+                        <h3 class="font-bold text-gray-900 mb-1">Ηλεκτρολόγος</h3>
+                        <p class="text-sm text-gray-600">Λάρισα</p>
+                    </a>
+
+                    <a href="{{ route('find.specialty.city', ['specialty' => 'technikos-klimatismou', 'city' => 'larisa']) }}"
+                       class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-cyan-100 hover:border-cyan-300">
+                        <div class="text-4xl mb-3">❄️</div>
+                        <h3 class="font-bold text-gray-900 mb-1">Κλιματισμός</h3>
+                        <p class="text-sm text-gray-600">Λάρισα</p>
+                    </a>
+
+                    <a href="{{ route('find.specialty.city', ['specialty' => 'elaiochromastistis', 'city' => 'larisa']) }}"
+                       class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-purple-100 hover:border-purple-300">
+                        <div class="text-4xl mb-3">🎨</div>
+                        <h3 class="font-bold text-gray-900 mb-1">Βαφές</h3>
+                        <p class="text-sm text-gray-600">Λάρισα</p>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
