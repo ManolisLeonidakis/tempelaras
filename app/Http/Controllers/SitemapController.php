@@ -59,6 +59,7 @@ class SitemapController extends Controller
     public function professionalsSitemap(): Response
     {
         $professionals = User::whereNotNull('idikotita')
+            ->where('admin', false)
             ->select('id', 'name', 'updated_at')
             ->get();
 
@@ -82,7 +83,11 @@ class SitemapController extends Controller
      */
     public function projectsSitemap(): Response
     {
-        $projects = Project::select('id', 'updated_at')->get();
+        $projects = Project::select('id', 'updated_at')
+            ->whereHas('user', function ($query) {
+                $query->where('admin', false);
+            })
+            ->get();
 
         return response()->view('sitemaps.projects', compact('projects'))
             ->header('Content-Type', 'text/xml');

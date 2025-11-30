@@ -12,6 +12,11 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::with(['user', 'images'])
+            ->whereHas('user', function ($query) {
+                if (!auth()->user()?->admin) {
+                    $query->where('admin', false);
+                }
+            })
             ->latest()
             ->paginate(12);
 

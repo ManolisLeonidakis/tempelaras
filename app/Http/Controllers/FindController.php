@@ -24,6 +24,10 @@ class FindController extends Controller
             $query->where('city', $city);
         }
 
+        if (!auth()->user()?->admin) {
+            $query->where('admin', false);
+        }
+
         // Apply sorting.
         switch ($sort) {
             case 'created_at':
@@ -84,6 +88,10 @@ class FindController extends Controller
 
         if ($city) {
             $query->where('city', $city);
+        }
+
+        if (!auth()->user()?->admin) {
+            $query->where('admin', false);
         }
 
         // Apply sorting.
