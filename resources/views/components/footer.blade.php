@@ -73,7 +73,7 @@
         </div>
 
         <!-- Newsletter Signup -->
-        <div class="border-t border-gray-700 mt-12 pt-8">
+        {{-- <div class="border-t border-gray-700 mt-12 pt-8">
             <div class="max-w-md mx-auto text-center lg:mx-0 lg:text-left lg:max-w-none lg:flex lg:items-center lg:justify-between">
                 <div class="lg:flex-1">
                     <h4 class="text-lg font-semibold text-white mb-2">Ενημερωθείτε για νέες υπηρεσίες</h4>
@@ -90,7 +90,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Bottom Footer -->
         <div class="border-t border-gray-700 mt-8 pt-8">
